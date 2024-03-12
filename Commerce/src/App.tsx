@@ -13,6 +13,7 @@ import PageNotFound from './pages/PageNotFound'
 
 //  for private login 
 import PrivateLogin from './pages/PrivateLogin'
+// import Product from './adminpanel/Product'
 import ProductTable from './adminpanel/ProductTable'
 import UploadProduct from './adminpanel/UploadProduct'
 
@@ -30,7 +31,6 @@ function App() {
   return (
      <React.Fragment>
          <BrowserRouter>
-   
    <Routes>
      <Route path="/" element={<Home />} />
      <Route path="/product" element={<Productss />} />
@@ -48,10 +48,10 @@ function App() {
      {/* For Privatelogin  */}
      <Route path='/privatelogin' element={<PrivateLogin />} />
      <Route path='/privatelogin/categories' element={<PrivateLogin />} />
+     <Route path='/privatelogin/product' element={<Product />} />
      <Route path='/privatelogin/uploadproduct' element={<UploadProduct/>}/>
       <Route path='/privatelogin/producttable' element={<ProductTable/>}/>
-    
-
+   
    </Routes>
  
 </BrowserRouter>

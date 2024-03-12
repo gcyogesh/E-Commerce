@@ -3,11 +3,14 @@ import Skeleton from "react-loading-skeleton";
 import { Link, useParams } from "react-router-dom";
 import Marquee from "react-fast-marquee";
 import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
-
+import Navbar from "../components/Navbar"
+import { useDispatch } from "react-redux";
+import { increment } from "../features/counter/CounterSlice";
 
 
 const Product:React.FC = () => {
+  const dispatch = useDispatch()
+
 
   const {id} = useParams();
   const [product, setProduct]= useState<Product[]>([]);
@@ -20,12 +23,12 @@ const Product:React.FC = () => {
       try {
         const response = await fetch(`http://localhost:2222/sportwear/${id}`);
         const result = await response.json();
-        setProduct([result]); 
+        setProduct(result); 
 
         
+        // console.log(result);
+        // console.log(result.productSubTitle);
         
-        console.log(result);
-        console.log([result.productName]);
         
         const response1 = await fetch(`http://localhost:2222/sportwear`);
         const result1 = await response1.json();
@@ -38,7 +41,9 @@ const Product:React.FC = () => {
       }
     };
     fetchData();
-  }, [id]);
+
+    
+  }, []);
 
 
 
@@ -66,14 +71,13 @@ const Product:React.FC = () => {
   };
 
   const ShowProduct = () => {
+    const {image,productSubTitle, price, description } = product;
     return (
       <>
       
-      {product.map((item, index)=>{
-        const {productName, productSubTitle,image, price, description } = item;
-        return(
+     
 
-          <div key={index} className="container my-5 py-2">
+          <div className="container my-5 py-2">
           <div className="row">
             
             <div className="col-md-6 col-sm-12 py-3">
@@ -87,7 +91,7 @@ const Product:React.FC = () => {
                 />
             </div>
             <div className="col-md-6 col-md-6 py-5">
-              <h4 className="text-uppercase text-muted">{productName}</h4>
+              <h4 className="text-uppercase text-muted">{}</h4>
               <h1 className="display-5">{productSubTitle}</h1>
               <p className="lead">
              
@@ -97,6 +101,7 @@ const Product:React.FC = () => {
               <p className="lead">{description}</p>
                
               <button
+              onClick={() => dispatch(increment())}
                 className="btn btn-outline-dark"
                 
                 >
@@ -108,8 +113,7 @@ const Product:React.FC = () => {
             </div>
           </div>
         </div>
-                )
-              })}
+             
       </>
     );
   };
@@ -152,10 +156,13 @@ const Product:React.FC = () => {
                       to=""
                       className="btn btn-dark m-1"
                       >
+                      
                       Buy Now
                     </Link>
                     <button
                       className="btn btn-dark m-1"
+                      onClick={() => dispatch(increment())}
+
                       
                       >
                       Add to Cart

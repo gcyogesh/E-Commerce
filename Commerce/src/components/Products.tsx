@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { Link } from "react-router-dom";
+import {  useDispatch } from "react-redux";
+import { increment } from "../features/counter/CounterSlice";
 
 
 
@@ -10,8 +12,13 @@ const Products: React.FC = () => {
   const [data, setData] = useState<Product[]>([]);
   const [filteredData, setFilteredData] = useState<Product[]>([]);
 
+  // redux toolkit 
+ 
+  const dispatch = useDispatch();
+
   const Loading = () => {
     return (
+
       <>
         <div className="col-12 py-5 text-center">
           <Skeleton height={40} width={560} />
@@ -26,6 +33,7 @@ const Products: React.FC = () => {
           <Skeleton height={592} />
         </div>
       </>
+      
     );
   };
 
@@ -86,8 +94,10 @@ const Products: React.FC = () => {
                       Buy Now
                     </Link>
 
-
-                    <button className="btn btn-dark m-1">Add to Cart</button>
+                    <button
+                     onClick={() => dispatch(increment())}
+                     className="btn btn-dark m-1">Add to Cart
+                    </button>
                   </div>
                 </div>
               </div>

@@ -68,7 +68,7 @@ const UploadProduct:React.FC  = () => {
    
   </header>
   <div className="form-wrap">
-    <form onSubmit={handleForm} id="survey-form">
+    <form onSubmit={handleForm} id="survey-form" encType="multipart/form-data">
       <div className="row">
         <div className="col-md-6">
           <div className="form-group">
@@ -147,8 +147,8 @@ const UploadProduct:React.FC  = () => {
             type="file" 
             name="image" 
             id="image" 
-            value={image}
-            onChange={(e)=>setImage(e.target.value)}
+            // value={image}
+            onChange={(e)=>setImage(e.target.files[0])}
             />
           </div>
         </div>

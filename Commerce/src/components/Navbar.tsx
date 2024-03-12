@@ -1,8 +1,32 @@
 
 import { NavLink } from 'react-router-dom'
+import { useEffect } from 'react';
+import { RootState } from "../Store";
+import { useSelector, useDispatch } from 'react-redux';
+import { setCartCount } from '../features/counter/CounterSlice';
+
 
 
 const Navbar = () => {
+    const dispatch = useDispatch();
+    const count = useSelector((state: RootState) => state.counter.value)
+
+      // Load cart count from localStorage on component mount
+      useEffect(() => {
+        const storedCount = localStorage.getItem('cartCount');
+        if (storedCount) {
+            dispatch(setCartCount(parseInt(storedCount)));
+        }
+    }, [dispatch]);
+
+    // Update localStorage whenever the cart count changes
+    useEffect(() => {
+        localStorage.setItem('cartCount', count.toString());
+    }, [count]);
+
+
+    
+
    
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light py-3 sticky-top">
@@ -30,11 +54,10 @@ const Navbar = () => {
                     <div className="buttons text-center">
                         <NavLink to="/login" className="btn btn-outline-dark m-2"><i className="fa fa-sign-in-alt mr-1"></i> Login</NavLink>
                         <NavLink to="/register" className="btn btn-outline-dark m-2"><i className="fa fa-user-plus mr-1"></i> Register</NavLink>
-                        <NavLink to="/cart" className="btn btn-outline-dark m-2"><i className="fa fa-cart-shopping mr-1"></i> Cart </NavLink>
+                            <NavLink to="/cart"  className="btn btn-outline-dark m-2"><i className="fa fa-cart-shopping mr-1"></i> Cart <span>({count})</span> </NavLink>
+                            
                     </div>
                 </div>
-
-
             </div>
         </nav>
     )
