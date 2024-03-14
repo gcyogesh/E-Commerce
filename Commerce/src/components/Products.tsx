@@ -80,7 +80,7 @@ const Products: React.FC = () => {
             return (
               <div key={index} className="col-md-4 mb-4">
                 <div className="card text-center h-100">
-                  <img className="card-img-top p-3" src={image} alt="Card" height={300} />
+                  <img className="card-img-top p-3" src={`http://127.0.0.1:2222/users/${image}`} alt="Card" height={300} />
                   <div className="card-body">
                     <h5 className="card-title">{productName}</h5>
                     <p className="card-text">{description}</p>

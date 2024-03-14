@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import PrivateNav from './PrivateNav';
-
+import Swal from 'sweetalert2';
 
 
 
 const ProductTable:React.FC  = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<Product[]>([]);
 
 
   const fetchData = async () => {
@@ -24,27 +24,47 @@ const ProductTable:React.FC  = () => {
 
 
 
-
-  // const handleDelete = async (id: string) => {
-  //   try {
-  //     const response = await fetch(`http://localhost:2222/sportwear/${id}`, {
-  //       method: 'DELETE'
-  //     });
-  //     if (response.ok) {
-  //       // Remove the deleted item from the state
-  //       const updatedData = data.filter((item: any) => item._id !== id);
-  //       console.log('Updated data after deletion:', updatedData);
-  //       setData(updatedData);
-  //       console.log('Sportswear item deleted successfully');
-  //     } else {
-  //       console.error('Failed to delete sportswear item');
-  //     }
-  //   } catch (error) {
-  //     console.error('Error:', error);
-  //   }
-  // };
+  const handleDelete = async (id: number) => {
+    try {
+      // Show a confirmation message using Swal.fire
+      const result = await Swal.fire({
+        title: "Are you sure mate?",
+        text: "We are deleting this from Your DataBase.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      });
   
-
+      // If the user confirmed the delete action
+      if (result.isConfirmed) {
+        // Send delete request to the server
+        const response = await fetch(`http://localhost:2222/sportwear/${id}`, {
+          method: 'DELETE'
+        });
+  
+        if (response.ok) {
+          // Delete operation was successful
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success"
+          });
+  
+          // Update the state to remove the deleted item
+          setData(data.filter(item => item._id !== id));
+        } else {
+          // Delete operation failed
+          console.error('Failed to delete sportswear item');
+        }
+      }
+    } catch (error) {
+      // Error occurred while trying to delete the item
+      console.error('Error deleting sportswear item:', error);
+    }
+  };
+  
 
 
   return (
@@ -53,7 +73,7 @@ const ProductTable:React.FC  = () => {
       <div className="container">
         <div className="row">
           <div className="col">
-            <table className="table table-image" style={{ width: '100%' }}>
+            <table border={7} className="table table-image" style={{ width: '100%' }}>
               <thead>
                 <tr>
                   <th scope="col">Index</th>
@@ -81,9 +101,9 @@ const ProductTable:React.FC  = () => {
                       <td>{brandName}</td>
                       <td className="w-25">
                         <img
-                          src={image}
+                          src={`http://127.0.0.1:2222/users/${image}`}
                           className="img-fluid img-thumbnail"
-                          alt="Sheep"
+                          alt={productName}
                         />
                       </td>
                       <td>{description}</td>
@@ -92,7 +112,7 @@ const ProductTable:React.FC  = () => {
                           type="submit"
                           id="submit"
                           className="btn btn-primary btn-block"
-                          // onClick={() => handleDelete(_id)}
+                          onClick={() => handleDelete(_id)}
                         >
                           Delete
                         </button>

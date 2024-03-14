@@ -36,9 +36,9 @@ const PrivateLogin = () => {
                   <div className="card">
                     <img
                       className="item rounded mx-auto d-block img-fluid" // Added img-fluid class for responsive images
-                      src={image}
+                      src={`http://127.0.0.1:2222/users/${image}`}
                       alt="Card image cap"
-                      style={{ height: '200px', objectFit: 'cover' }} // Fixed dimensions for image
+                      style={{ height: '300px', objectFit: 'cover' }} // Fixed dimensions for image
                     />
                     <div className="card-body">
                       <div className="caption">

@@ -2,9 +2,22 @@ import React from "react";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
+import {useDispatch, useSelector } from "react-redux";
+import { addItem, deleteItem } from "../features/counter/CounterSlice";
 
-const Cart = () => {
+const Cart: React.FC = () => {
 
+  const cartItems = useSelector((state:any)=> state.counter.cart)
+  const dispatch = useDispatch();
+
+
+  const addItemToCart = (product:Product) => {
+    dispatch(addItem(product)); // Dispatch action to add item to cart
+  };
+
+  const removeItemFromCart = (product:Product) => {
+    dispatch(deleteItem(product)); // Dispatch action to remove item from cart
+  };
 
 
 
@@ -23,17 +36,18 @@ const Cart = () => {
                   </div>
                   <div className="card-body">
                   
-                      
+                      {cartItems.map((item:Product, index:Number)=>()=>(
+
                         <div >
-                          <div className="row d-flex align-items-center">
+                          <div className="row d-flex align-items-center" key={index}>
                             <div className="col-lg-3 col-md-12">
                               <div
                                 className="bg-image rounded"
                                 data-mdb-ripple-color="light"
                               >
                                 <img
-                                  src=""
-                                  alt=""
+                                  src="https://images.pexels.com/photos/19989356/pexels-photo-19989356/free-photo-of-a-rainbow-is-seen-over-a-road-with-snow-and-trees.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+                                  alt={item.productName}
                                   width={100}
                                   height={75}
                                 />
@@ -42,7 +56,7 @@ const Cart = () => {
 
                             <div className="col-lg-5 col-md-6">
                               <p>
-                                <strong></strong>
+                                <strong>{item.productSubTitle}</strong>
                               </p>
                             </div>
 
@@ -52,6 +66,7 @@ const Cart = () => {
                                 style={{ maxWidth: "300px" }}
                               >
                                 <button
+                                onClick={() => removeItemFromCart(item)}
                                   className="btn px-3"
                                  
                                 >
@@ -62,6 +77,7 @@ const Cart = () => {
 
                                 <button
                                   className="btn px-3"
+                                  onClick={() => addItemToCart(item)}
                                  
                                 >
                                   <i className="fas fa-plus"></i>
@@ -71,7 +87,7 @@ const Cart = () => {
                               <p className="text-start text-md-center">
                                 <strong>
                                   <span className="text-muted"></span>{" "}
-                                  x $
+                                  x ${item.price}
                                 </strong>
                               </p>
                             </div>
@@ -79,6 +95,7 @@ const Cart = () => {
 
                           <hr className="my-4" />
                         </div>
+                      ))}
                                          
                   </div>
                 </div>
@@ -126,11 +143,11 @@ const Cart = () => {
  
     <>
     
-      <div className="container my-3 py-3">
-        <h1 className="text-center">Cart</h1>
-        <hr />
-       
-      </div>
+        <div className="container my-3 py-3">
+          <h1 className="text-center">Cart</h1>
+          <hr />
+        
+        </div>
       <Footer />
     </>
   

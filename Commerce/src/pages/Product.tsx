@@ -5,11 +5,17 @@ import Marquee from "react-fast-marquee";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar"
 import { useDispatch } from "react-redux";
-import { increment } from "../features/counter/CounterSlice";
+import { increment, addItem } from "../features/counter/CounterSlice";
 
 
 const Product:React.FC = () => {
   const dispatch = useDispatch()
+
+  const handleAddToCart = (product: Product) => {
+    dispatch(addItem(product)); // Dispatch action to add product to cart
+    dispatch(increment()); // Dispatch action to increment cart count
+  };
+
 
 
   const {id} = useParams();
@@ -84,7 +90,7 @@ const Product:React.FC = () => {
              
               <img
                 className="img-fluid"
-                src={image}
+                src={`http://127.0.0.1:2222/users/${image}`}
                 alt=""
                 width="400px"
                 height="400px"
@@ -138,7 +144,7 @@ const Product:React.FC = () => {
                   <div key={index} className="card mx-4 text-center">
                   <img
                     className="card-img-top p-3"
-                    src={image}
+                    src={`http://127.0.0.1:2222/users/${image}`}
                     alt="Card"
                     height={300}
                     width={300}
@@ -161,9 +167,7 @@ const Product:React.FC = () => {
                     </Link>
                     <button
                       className="btn btn-dark m-1"
-                      onClick={() => dispatch(increment())}
-
-                      
+                      onClick={() => handleAddToCart(item)}
                       >
                       Add to Cart
                     </button>

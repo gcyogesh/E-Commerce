@@ -12,8 +12,8 @@ const connection=()=>{
 
     mongoose.connect(DB).then(()=>{
         console.log("Connected to db")
-    }).catch(()=>{
-        console.log("NOt connected")
+    }).catch((error)=>{
+        console.log( error,"NOt connected")
     })
     
 }

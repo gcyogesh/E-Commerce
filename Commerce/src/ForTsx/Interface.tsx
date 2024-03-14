@@ -3,6 +3,7 @@ interface Product {
     productName: string;
     description: string;
     productSubTitle: string;
+    brandName: string;
     price: number;
     image: string;
   }

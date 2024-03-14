@@ -7,6 +7,8 @@ import { signInWithPopup } from 'firebase/auth';
 // import Product from "./Product";
 import { useNavigate } from "react-router-dom";
 
+
+
 const Login: React.FC = () => {
   const [value, setValue] = useState('');
   const navigate = useNavigate();
