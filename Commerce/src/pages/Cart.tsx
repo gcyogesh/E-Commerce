@@ -36,7 +36,7 @@ const Cart: React.FC = () => {
                   </div>
                   <div className="card-body">
                   
-                      {cartItems.map((item:Product, index:Number)=>()=>(
+                      {cartItems.map((item:Product, index:undefined)=>()=>(
 
                         <div >
                           <div className="row d-flex align-items-center" key={index}>

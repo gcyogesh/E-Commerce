@@ -1,4 +1,3 @@
-import React from "react";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
@@ -257,12 +256,14 @@ const Checkout = () => {
 
                     <hr className="my-4" />
 
-                    <button
+                  <Link to= '/login'>
+                  <button
                       className="w-100 btn btn-primary "
-                      type="submit" disabled
+                      type="submit" 
                     >
                       Continue to checkout
                     </button>
+                  </Link>
                   </form>
                 </div>
               </div>
