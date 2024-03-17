@@ -5,23 +5,21 @@ import Marquee from "react-fast-marquee";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar"
 import { useDispatch } from "react-redux";
-import { increment, addItem } from "../features/counter/CounterSlice";
+import { AddCart } from "../features/CartSlice";
+
 
 
 const Product:React.FC = () => {
-  const dispatch = useDispatch()
 
-  const handleAddToCart = (product: Product) => {
-    dispatch(addItem(product)); // Dispatch action to add product to cart
-    dispatch(increment()); // Dispatch action to increment cart count
-  };
-
+  const dispatch = useDispatch();
+  
 
 
   const {id} = useParams();
-  const [product, setProduct]= useState<Product[]>([]);
+  const [product, setProduct]= useState<Product>({});
   const [similarProducts, setSimilarProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+
 
 
   useEffect(() => {
@@ -76,6 +74,8 @@ const Product:React.FC = () => {
     );
   };
 
+    
+
   const ShowProduct = () => {
     const {image,productSubTitle, price, description } = product;
     return (
@@ -107,9 +107,8 @@ const Product:React.FC = () => {
               <p className="lead">{description}</p>
                
               <button
-              onClick={() => dispatch(increment())}
                 className="btn btn-outline-dark"
-                
+                onClick={() => dispatch(AddCart(product))}
                 >
                 Add to Cart
               </button>
@@ -167,7 +166,7 @@ const Product:React.FC = () => {
                     </Link>
                     <button
                       className="btn btn-dark m-1"
-                      onClick={() => handleAddToCart(item)}
+                      onClick={() => dispatch(AddCart(item))}
                       >
                       Add to Cart
                     </button>
@@ -175,7 +174,6 @@ const Product:React.FC = () => {
                 </div>
                         )
                       })}
-           
           </div>
         </div>
       </>

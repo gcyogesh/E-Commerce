@@ -1,8 +1,13 @@
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
-const Checkout = () => {
+import { useSelector } from "react-redux";
+import { RootState } from "../Store";
 
+const Checkout = () => {
+  const cartItems = useSelector((state: RootState) => state.cart.cart);
+
+  const totalPrice = cartItems.reduce((total, item) => total + item.price, 0);
 
   const EmptyCart = () => {
     return (
@@ -19,37 +24,54 @@ const Checkout = () => {
     );
   };
 
+        
+
     return (
       <>
-<Navbar />
-        <div className="container py-5">
-          <div className="row my-4">
-            <div className="col-md-5 col-lg-4 order-md-last">
-              <div className="card mb-4">
-                <div className="card-header py-3 bg-light">
-                  <h5 className="mb-0">Order Summary</h5>
-                </div>
-                <div className="card-body">
-                  <ul className="list-group list-group-flush">
+      <Navbar />
+      <div className="container py-5">
+        <div className="row my-4">
+          <div className="col-md-5 col-lg-4 order-md-last">
+          {cartItems.length === 0 ? (
+              <EmptyCart />
+            ) : (
+            <div className="card mb-4">
+              <div className="card-header py-3 bg-light">
+                <h5 className="mb-0">Order Summary</h5>
+              </div>
+              <div className="card-body">
+                {cartItems.map((item, index) => (
+                  <ul key={index} className="list-group list-group-flush">
                     <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-                      Products 
+                      Products: {item.productName}
                     </li>
                     <li className="list-group-item d-flex justify-content-between align-items-center px-0">
-                      Shipping
-                      <span>$</span>
+                      Price: ${item.price}
                     </li>
-                    <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
-                      <div>
-                        <strong>Total amount</strong>
-                      </div>
-                      <span>
-                        <strong>$</strong>
-                      </span>
+                    <li className="list-group-item d-flex justify-content-between align-items-center px-0">
+                      Shipping: Free 
                     </li>
                   </ul>
-                </div>
+                ))}
+                <ul className="list-group list-group-flush">
+                  <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                    <div>
+                      <strong>Total amount</strong>
+                    </div>
+                    <span>
+                      <strong>${totalPrice}</strong>
+                    </span>
+                  </li>
+                </ul>
               </div>
             </div>
+            )}
+          </div>
+          
+
+              
+
+            
             <div className="col-md-7 col-lg-8">
               <div className="card mb-4">
                 <div className="card-header py-3">

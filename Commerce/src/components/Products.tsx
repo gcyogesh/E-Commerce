@@ -3,7 +3,8 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { Link } from "react-router-dom";
 import {  useDispatch } from "react-redux";
-import { increment } from "../features/counter/CounterSlice";
+import { AddCart } from "../features/CartSlice";
+
 
 
 
@@ -85,7 +86,7 @@ const Products: React.FC = () => {
                     <h5 className="card-title">{productName}</h5>
                     <p className="card-text">{description}</p>
                   </div>
-                  <ul className="list-group list-group-flush">
+                  <ul className="list-  group list-group-flush">
                     <li className="list-group-item lead">${price}</li>
                     <li className="list-group-item">{productSubTitle}</li>
                   </ul>
@@ -95,7 +96,7 @@ const Products: React.FC = () => {
                     </Link>
 
                     <button
-                     onClick={() => dispatch(increment())}
+                     onClick={() => dispatch(AddCart(item))}
                      className="btn btn-dark m-1">Add to Cart
                     </button>
                   </div>
