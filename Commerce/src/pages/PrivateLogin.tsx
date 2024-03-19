@@ -8,7 +8,7 @@ const PrivateLogin = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("http://localhost:2222/sportwear");
+      const response = await fetch("https://e-commerce-7rma.onrender.com/sportwear");
       const result = await response.json();
       setData(result);
     } catch {
@@ -36,7 +36,7 @@ const PrivateLogin = () => {
                   <div className="card">
                     <img
                       className="item rounded mx-auto d-block img-fluid" // Added img-fluid class for responsive images
-                      src={`http://127.0.0.1:2222/users/${image}`}
+                      src={`https://e-commerce-7rma.onrender.com/users/${image}`}
                       alt="Card image cap"
                       style={{ height: '300px', objectFit: 'cover' }} // Fixed dimensions for image
                     />

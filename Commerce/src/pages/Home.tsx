@@ -1,5 +1,5 @@
 import Navbar from "../components/Navbar"
-import Main from "../components/Main"
+// import Main from "../components/Main"
 import Footer from "../components/Footer"
 import Products from "../components/Products"
 
@@ -8,7 +8,7 @@ function Home() {
   return (
     <>
       <Navbar />
-      <Main />
+      {/* <Main /> */}
       <Products />
       <Footer />
     </>

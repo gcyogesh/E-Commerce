@@ -43,7 +43,7 @@ const PrivateNav:React.FC = () => {
             </li>
             <li className="nav-item">
             <li className="nav-item">
-             <Link className='nav-link' to="/privatelogin/product">Product</Link>
+             <Link className='nav-link' to="/privatelogin/">Product</Link>
             </li>
             </li>
             <li className="nav-item">

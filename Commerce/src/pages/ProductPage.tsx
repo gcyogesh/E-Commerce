@@ -1,21 +1,15 @@
-  import React, { useEffect, useState } from "react";
-  // import Skeleton from "react-loading-skeleton";
-  import "react-loading-skeleton/dist/skeleton.css";
-  import { Link } from "react-router-dom";
-  import {  useDispatch } from "react-redux";
-  import { AddCart } from "../features/CartSlice";
-  import bgImage from '../images/nature1.webp'
+import React, {useEffect, useState} from 'react'
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
+import { Link } from "react-router-dom";
+import {  useDispatch } from "react-redux";
+import { AddCart } from "../features/CartSlice";
 
+const ProductPage = () => {
 
-
-
-
-
-  const Products: React.FC = () => {
     const [data, setData] = useState<Product[]>([]);
     const [filteredData, setFilteredData] = useState<Product[]>([]);
-    const [searchTerm, setSearchTerm] = useState<string>('');
-    console.log(searchTerm)
+
 
     // redux toolkit 
   
@@ -45,51 +39,16 @@
     };
 
     // for searching hai 
-    const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-      const searchTerm = event.target.value;
-      setSearchTerm(searchTerm);
-      const filtered = data.filter(product =>
-        product.productName.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-      setFilteredData(filtered);
-    };
+    
 
 
 
 
 
-    return (
-
-      <>
-
-<div className="hero border-1 pb-3">
-        <div className="card bg-dark text-white border-0 mx-3">
-          <img
-            className="card-img img"
-            src={bgImage}
-            alt="Card"
-            height={600}
-          />
-          <div className="card-img-overlay d-flex align-items-center">
-            <div className="container">
-              <h5 className="card-titlet  fs-1 text fw-lighter">Summer Time Huh!</h5>
-              <p className="card-text fs-5 d-none d-sm-block ">
-              Get your all the summer item here. We got everything you need with offer!
-              </p>
-              <div className="search-bar mt-3">
-                <input type="text" 
-                className="form-control"
-                 placeholder="Search..." 
-                 onChange={handleSearch}
-                 />
-                {/* <button id="searchIcon" className="btn btn-primary">
-                  <FaSearch />
-                </button> */}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+  return (
+    <React.Fragment>
+        <Navbar/>
+       
 
 
 
@@ -140,8 +99,11 @@
             })}
           </div>
         </div>
-      </>
-    );
-  };
+    
+        <Footer />
+    </React.Fragment>
+ 
+  )
+}
 
-  export default Products;
+export default ProductPage

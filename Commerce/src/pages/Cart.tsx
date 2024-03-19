@@ -2,13 +2,24 @@ import React from "react";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../Store";
 import { FaPlus, FaMinus } from "react-icons/fa";
+import { removeFromCart, plusByOne } from "../features/CartSlice";
 
 const Cart: React.FC = () => {
   
   const cartItems = useSelector((item:RootState) => item.cart.cart);
+
+  const dispatch = useDispatch();
+  const handleRemoveItem = (index: number) => {
+    dispatch(removeFromCart(index));
+  };
+  
+  const handleAdd = () => {
+    dispatch(plusByOne());
+  };
+  
 
   return (
     <>
@@ -22,16 +33,16 @@ const Cart: React.FC = () => {
                   <h5 className="mb-0">Item List</h5>
                 </div>
                 <div className="card-body">
-                  {cartItems.map((item, index) => (
+                  {cartItems.map((item:Product, index:number) => (
                     <div key={index}>
                       <div className="row d-flex align-items-center">
                         <div className="col-lg-3 col-md-12">
-                          <div
+                           <div
                             className="bg-image rounded"
                             data-mdb-ripple-color="light"
                           >
                             <img
-                              src={`http://127.0.0.1:2222/users/${item.image}`} 
+                              src={`https://e-commerce-7rma.onrender.com/users/${item.image}`} 
                               alt={item.productName} 
                               width={100}
                               height={75}
@@ -49,12 +60,16 @@ const Cart: React.FC = () => {
                             style={{ maxWidth: "300px" }}
                           >
                             {/* Add button logic for removing items */}
-                            <button className="btn px-3">
+                            <button className="btn px-3"
+                            onClick={() => handleRemoveItem(index)}
+                            >
                               <FaMinus/>
                             </button>
                             <p className="mx-5">Quantity: {item.quantity}</p>
                             {/* Add button logic for adding items */}
-                            <button className="btn px-3">
+                            <button className="btn px-3"
+                            onClick={handleAdd}
+                            >
                               <FaPlus/>
                             </button>
                           </div>
@@ -82,18 +97,19 @@ const Cart: React.FC = () => {
     <div className="card-body">
       <ul className="list-group list-group-flush">
         {/* Add logic for summarizing the order */}
-        {cartItems.map((item, index) => (
+        {cartItems.map((item:Product, index:number) => (
           <li key={index} className="list-group-item">
             <div className="d-flex justify-content-between">
               <span>{item.productName}</span>
               <span>${item.price}</span>
-            </div>
+            </div>  
           </li>
         ))}
       </ul>
       <div className="mt-3">
         {/* Calculate total price by summing up prices of all items */}
-        <strong>Total Price: ${cartItems.reduce((acc, item) => acc + item.price, 0)}</strong>
+        <strong>Total Price: ${cartItems.reduce((acc:number, item:Product) => acc + item.price, 0)}</strong>
+
       </div>
       <Link to="/checkout" className="btn btn-dark btn-lg btn-block mt-3">
         Go to checkout

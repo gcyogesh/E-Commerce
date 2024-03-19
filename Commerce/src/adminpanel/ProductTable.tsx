@@ -10,7 +10,7 @@ const ProductTable:React.FC  = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("http://localhost:2222/sportwear");
+      const response = await fetch("https://e-commerce-7rma.onrender.com/sportwear");
       const result = await response.json();
       setData(result);
     } catch {
@@ -40,7 +40,7 @@ const ProductTable:React.FC  = () => {
       // If the user confirmed the delete action
       if (result.isConfirmed) {
         // Send delete request to the server
-        const response = await fetch(`http://localhost:2222/sportwear/${id}`, {
+        const response = await fetch(`https://e-commerce-7rma.onrender.com/sportwear/${id}`, {
           method: 'DELETE'
         });
   
@@ -101,7 +101,7 @@ const ProductTable:React.FC  = () => {
                       <td>{brandName}</td>
                       <td className="w-25">
                         <img
-                          src={`http://127.0.0.1:2222/users/${image}`}
+                          src={`https://e-commerce-7rma.onrender.com/users/${image}`}
                           className="img-fluid img-thumbnail"
                           alt={productName}
                         />

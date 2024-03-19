@@ -7,7 +7,7 @@ import { RootState } from "../Store";
 const Checkout = () => {
   const cartItems = useSelector((state: RootState) => state.cart.cart);
 
-  const totalPrice = cartItems.reduce((total, item) => total + item.price, 0);
+  const totalPrice = cartItems.reduce((total:number, item:Product) => total + item.price, 0);
 
   const EmptyCart = () => {
     return (
@@ -40,7 +40,7 @@ const Checkout = () => {
                 <h5 className="mb-0">Order Summary</h5>
               </div>
               <div className="card-body">
-                {cartItems.map((item, index) => (
+                {cartItems.map((item:Product, index:number) => (
                   <ul key={index} className="list-group list-group-flush">
                     <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                       Products: {item.productName}

@@ -9,6 +9,17 @@ import { AddCart } from "../features/CartSlice";
 
 
 
+const defaultProduct: Product = {
+  _id: 0, // Example value, replace with appropriate default
+  productName: "", // Example value, replace with appropriate default
+  description: "", // Example value, replace with appropriate default
+  productSubTitle: "", // Example value, replace with appropriate default
+  brandName: "", // Example value, replace with appropriate default
+  price: 0, // Example value, replace with appropriate default
+  image: "", // Example value, replace with appropriate default
+  quantity: 0 // Example value, replace with appropriate default
+};
+
 const Product:React.FC = () => {
 
   const dispatch = useDispatch();
@@ -16,7 +27,7 @@ const Product:React.FC = () => {
 
 
   const {id} = useParams();
-  const [product, setProduct]= useState<Product>({});
+  const [product, setProduct] = useState<Product >(defaultProduct);
   const [similarProducts, setSimilarProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -25,7 +36,7 @@ const Product:React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:2222/sportwear/${id}`);
+        const response = await fetch(`https://e-commerce-7rma.onrender.com/sportwear/${id}`);
         const result = await response.json();
         setProduct(result); 
 
@@ -34,7 +45,7 @@ const Product:React.FC = () => {
         // console.log(result.productSubTitle);
         
         
-        const response1 = await fetch(`http://localhost:2222/sportwear`);
+        const response1 = await fetch(`https://e-commerce-7rma.onrender.com/sportwear`);
         const result1 = await response1.json();
         setSimilarProducts(result1);
       
@@ -90,7 +101,7 @@ const Product:React.FC = () => {
              
               <img
                 className="img-fluid"
-                src={`http://127.0.0.1:2222/users/${image}`}
+                src={`https://e-commerce-7rma.onrender.com/users/${image}`}
                 alt=""
                 width="400px"
                 height="400px"
@@ -143,7 +154,7 @@ const Product:React.FC = () => {
                   <div key={index} className="card mx-4 text-center">
                   <img
                     className="card-img-top p-3"
-                    src={`http://127.0.0.1:2222/users/${image}`}
+                    src={`https://e-commerce-7rma.onrender.com/users/${image}`}
                     alt="Card"
                     height={300}
                     width={300}

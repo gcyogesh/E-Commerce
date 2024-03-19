@@ -13,7 +13,7 @@ const UploadProduct: React.FC = () => {
   const [image, setImage] = useState<File | null>(null);
   const [description, setDescription] = useState('');
 
-  const api = `http://localhost:2222/sportwear`
+  const api = `https://e-commerce-7rma.onrender.com/sportwear`
 
   const handleForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

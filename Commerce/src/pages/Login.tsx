@@ -29,6 +29,9 @@ const Login: React.FC = () => {
 
   return (
     <>
+    <div>
+      {value}
+    </div>
       <Navbar />
       <div className="container my-3 py-3">
         <h1 className="text-center">Login</h1>
@@ -63,7 +66,7 @@ const Login: React.FC = () => {
                 </p>
               </div>
               <div className="text-center">
-                <button className="my-2 mx-auto btn btn-dark" type="submit" disabled>
+                <button className="my-2 mx-auto btn btn-dark" type="submit" >
                   Login
                 </button>
               </div>

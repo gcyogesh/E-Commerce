@@ -1,8 +1,8 @@
 import { NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-
+import { RootState } from '../Store'
 const Navbar = () => {
-  const cartCount = useSelector(state => state.cart.cart.length)
+  const cartCount = useSelector((state:RootState) => state.cart.cart.length)
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-secondary py-3 sticky-top">
@@ -25,6 +25,9 @@ const Navbar = () => {
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/contact">Contact</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/plogin">AdminLogin </NavLink>
             </li>
           </ul>
           <div className="buttons text-center">

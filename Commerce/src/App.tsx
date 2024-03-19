@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter , Routes , Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Product from './pages/Product'
-import Productss from './pages/Productss'
+// import Productss from './pages/Productss'
 import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
 import Cart from './pages/Cart'
@@ -16,6 +16,8 @@ import PrivateLogin from './pages/PrivateLogin'
 // import Product from './adminpanel/Product'
 import ProductTable from './adminpanel/ProductTable'
 import UploadProduct from './adminpanel/UploadProduct'
+import NavLogin from './pages/NavLogin'
+import ProductPage from './pages/ProductPage'
 
 
 
@@ -33,7 +35,7 @@ function App() {
          <BrowserRouter>
    <Routes>
      <Route path="/" element={<Home />} />
-     <Route path="/product" element={<Productss />} />
+     <Route path="/product" element={<ProductPage />} />
      <Route path="/product/:id" element={<Product/>} />
      <Route path="/about" element={<AboutPage />} />
      <Route path="/contact" element={<ContactPage />} />
@@ -41,6 +43,7 @@ function App() {
      <Route path="/login" element={<Login />} />
      <Route path="/register" element={<Register />} />
      <Route path="/checkout" element={<Checkout />} />
+     <Route path="/plogin" element={<NavLogin />} />
      <Route path="*" element={<PageNotFound />} />
      
      
