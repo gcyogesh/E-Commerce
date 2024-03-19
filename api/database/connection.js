@@ -6,7 +6,7 @@ dotenv.config()
 
 
 
-const DB = process.env.DB
+const DB = process.env.DB 
 
 const connection=()=>{
 

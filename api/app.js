@@ -13,6 +13,7 @@ app.use('/sportwear', sportWearRoutes);
 
 
 
+
 // for image 
 app.use(express.static('public'));
 
