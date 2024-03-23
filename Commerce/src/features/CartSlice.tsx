@@ -8,7 +8,6 @@ const initialState : any = {
     cart : [],
     totalprice : 0,
     quantity : 0,
-    
 
 }
 
@@ -27,9 +26,6 @@ export const cartSlice = createSlice({
          state.cart.push({ ...action.payload});
          state.totalprice += action.payload.totalprice;
          localStorage.setItem("reduxState", JSON.stringify(state));
-         
-       
-         
       },
       
       
