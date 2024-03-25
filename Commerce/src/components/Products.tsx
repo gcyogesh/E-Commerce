@@ -49,7 +49,7 @@ const Products: React.FC = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("https://e-commerce-7rma.onrender.com/sportwea");
+      const response = await fetch("https://e-commerce-7rma.onrender.com/sportwear");
 
       const result = await response.json();
       setData(result);
