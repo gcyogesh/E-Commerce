@@ -7,7 +7,7 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-secondary py-3 sticky-top">
       <div className="container">
-        <NavLink className="navbar-brand fw-bold fs-4 px-2" to="/">KinGhar</NavLink>
+        <NavLink className="navbar-brand fw-bold fs-4 px-2" to="/">Crown & Cloth</NavLink>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
