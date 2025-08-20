@@ -64,7 +64,7 @@ function NavLogin() {
               {errorMessage && <p className="text-danger">{errorMessage}</p>}
 
               <div className="text-center">
-                <button className="my-2 mx-auto btn btn-dark" type="submit">
+                <button className="my-2 mx-auto btn btn-dark" type="submit" >
                   Login
                 </button>
               </div>
